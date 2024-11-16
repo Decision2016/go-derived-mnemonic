@@ -59,14 +59,14 @@ var derive = &cobra.Command{
 		bitsLength := deriveMnemonicLength*11 - deriveMnemonicLength/3
 
 		for idx := 0; idx < deriveCount; idx++ {
-			path := fmt.Sprintf("%s/%d", basePath, results)
+			path := fmt.Sprintf("%s/%d", basePath, idx)
 			entropy, err := mderive.DeriveEntropyForMnemonic(master, path)
 			if err != nil {
 				fmt.Printf("derive entropy for mnemonic failed: %s", err)
 				return
 			}
 
-			derivedMnemonic, err := mderive.NewMnemonicByEntropy(entropy[:bitsLength])
+			derivedMnemonic, err := mderive.NewMnemonicByEntropy(entropy[:bitsLength/8])
 			if err != nil {
 				fmt.Printf("generate new mnemonic failed: %s", err)
 				return
@@ -75,7 +75,7 @@ var derive = &cobra.Command{
 			results[idx] = derivedMnemonic
 		}
 
-		fmt.Printf("derive %d new mnemonics based on %s", deriveCount, deriveBasePath)
+		fmt.Printf("derive %d new mnemonics based on path [%s]:\n", deriveCount, deriveBasePath)
 		for idx := 0; idx < deriveCount; idx++ {
 			fmt.Println(results[idx])
 		}
@@ -86,8 +86,8 @@ func init() {
 	generate.Flags().IntVarP(&length, "length", "l", 12, "mnemonic length, must be 12, 15, 18, 21 or 24")
 
 	derive.Flags().IntVarP(&deriveMnemonicLength, "length", "l", 12, "mnemonic length, must be 12, 15, 18, 21 or 24")
-	derive.Flags().StringVarP(&deriveMnemonic, "passphrase", "e", "", "mnemonic need to be derived")
-	derive.Flags().StringVarP(&derivePassphrase, "mnemonic", "m", "", "mnemonic passphrase")
+	derive.Flags().StringVarP(&derivePassphrase, "passphrase", "e", "", "mnemonic need to be derived")
+	derive.Flags().StringVarP(&deriveMnemonic, "mnemonic", "m", "", "mnemonic passphrase")
 	derive.Flags().StringVarP(&deriveBasePath, "path", "p", "m/83696968'/0'/0'", "base derive path")
 	derive.Flags().IntVarP(&deriveCount, "count", "n", 1, "mnemonic derive count")
 

@@ -5,8 +5,6 @@ import (
 	"crypto/sha512"
 )
 
-var b85Path = "m/83696968'/0'/0'"
-
 func DeriveEntropyForMnemonic(key *Key, path string) ([]byte, error) {
 	derivedKey, err := DerivePrivateKey(key, path)
 	if err != nil {

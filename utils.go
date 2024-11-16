@@ -25,7 +25,7 @@ func addChecksum(data []byte) []byte {
 	checksum := sha2.Sum(nil)
 
 	checksumFirstByte := checksum[0]
-	checksumBitLength := uint(len(checksum) / 4)
+	checksumBitLength := uint(len(data) / 4)
 
 	dataNum := new(big.Int).SetBytes(data)
 

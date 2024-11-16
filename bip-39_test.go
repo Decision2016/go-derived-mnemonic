@@ -19,3 +19,15 @@ func TestNewSeedWithErrorCheck(t *testing.T) {
 		return
 	}
 }
+
+func TestNewMnemonic(t *testing.T) {
+	newMnemonic, err := NewMnemonic(12)
+	if err != nil {
+		t.Fatalf("create new mnemonic failed: %s", err)
+	}
+
+	_, err = NewSeedWithErrorCheck(newMnemonic, "")
+	if err != nil {
+		t.Fatalf("convert mnemonic to seed failed: %s", err)
+	}
+}
