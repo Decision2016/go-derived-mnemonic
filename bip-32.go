@@ -1,6 +1,6 @@
 // reference: https://github.com/tyler-smith/go-bip32/blob/master/bip32.go
 
-package main
+package mderive
 
 import (
 	"bytes"
@@ -169,7 +169,7 @@ func (key *Key) Base58Encode() string {
 		return ""
 	}
 
-	return Encode(serializedKey)
+	return b58Encode(serializedKey)
 }
 
 func (key *Key) String() string {
@@ -210,8 +210,8 @@ func Deserialize(data []byte) (*Key, error) {
 	return key, nil
 }
 
-func Base58DecodeToKey(data string) (*Key, error) {
-	b, err := Decode(data)
+func Base58Decode(data string) (*Key, error) {
+	b, err := b58Decode(data)
 	if err != nil {
 		return nil, err
 	}

@@ -4,7 +4,7 @@
 
 // Package elliptic implements several standard elliptic curves over prime
 // fields.
-package main
+package mderive
 
 // This package operates, internally, on Jacobian coordinates. For a given
 // (x, y) position on the curve, the Jacobian coordinates are (x1, y1, z1)

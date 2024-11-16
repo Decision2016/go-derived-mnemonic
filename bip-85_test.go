@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"encoding/hex"
@@ -7,13 +7,13 @@ import (
 
 func TestDeriveEntropy(t *testing.T) {
 	masterKeyB58 := "xprv9s21ZrQH143K2LBWUUQRFXhucrQqBpKdRRxNVq2zBqsx8HVqFk2uYo8kmbaLLHRdqtQpUm98uKfu3vca1LqdGhUtyoFnCNkfmXRyPXLjbKb"
-	key, err := Base58DecodeToKey(masterKeyB58)
+	key, err := Base58Decode(masterKeyB58)
 	if err != nil {
 		t.Fatalf("decode master to key failed: %s", err)
 		return
 	}
 
-	entropy, err := DeriveEntropy(key)
+	entropy, err := DeriveEntropyForMnemonic(key, "m/83696968'/0'/0'")
 	if err != nil {
 		t.Fatalf("derive key to entropy failed")
 		return

@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"bytes"
@@ -12,7 +12,7 @@ import (
 // utils for bip-39
 
 func checkEntropyBitsLength(size int) error {
-	if size < 128 || size > 256 || size%32 != 0 {
+	if size < 128 || size > 256 || (size%32 != 0) {
 		return ErrEntropyBitsLengthInvalid
 	}
 
@@ -52,7 +52,7 @@ func paddingZero(data []byte, length int) []byte {
 	return newData
 }
 
-func checkInArr(arr []int, value int) bool {
+func CheckInArr(arr []int, value int) bool {
 	for _, item := range arr {
 		if item == value {
 			return true

@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"crypto/rand"
@@ -46,7 +46,7 @@ func NewEntropy(bitSize int) ([]byte, error) {
 		return nil, err
 	}
 
-	newEntropy := make([]byte, bitSize)
+	newEntropy := make([]byte, bitSize/8)
 	if _, err := rand.Read(newEntropy); err != nil {
 		return nil, err
 	}
@@ -55,11 +55,11 @@ func NewEntropy(bitSize int) ([]byte, error) {
 }
 
 func NewMnemonic(length int) (string, error) {
-	if !checkInArr(validMnemonicLengths, length) {
+	if !CheckInArr(validMnemonicLengths, length) {
 		return "", ErrMnemonicLengthInvalid
 	}
 
-	entropyBitLength := length * 8
+	entropyBitLength := length*11 - length/3
 	entropy, err := NewEntropy(entropyBitLength)
 	if err != nil {
 		return "", err
@@ -100,7 +100,7 @@ func NewMnemonicByEntropy(entropy []byte) (string, error) {
 }
 
 func EntropyFromMnemonic(mnemonic []string) ([]byte, error) {
-	if !checkInArr(validMnemonicLengths, len(mnemonic)) {
+	if !CheckInArr(validMnemonicLengths, len(mnemonic)) {
 		return nil, ErrMnemonicLengthInvalid
 	}
 

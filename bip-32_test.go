@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"encoding/hex"
@@ -65,7 +65,7 @@ func TestKey_Base58(t *testing.T) {
 func TestDeserialize(t *testing.T) {
 	b58 := "xprv9s21ZrQH143K32mLvbGNtzZsMdpY2bHJo5v5Eh6yxgbSLYHWT8kj7imgkDh7WjCByYsmu18vZcqTjbUVP2HxNMqGNqKdWM76PvxiYzYJ5hK"
 
-	master, err := Base58DecodeToKey(b58)
+	master, err := Base58Decode(b58)
 	if err != nil {
 		t.Fatalf("decode base58 to key failed: %s", err)
 		return

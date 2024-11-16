@@ -1,5 +1,5 @@
 // reference: https://github.com/dustinxie/ecc/blob/master/elliptic.go
-package main
+package mderive
 
 import (
 	"crypto/elliptic"

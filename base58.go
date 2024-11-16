@@ -1,5 +1,5 @@
 // reference: https://github.com/akamensky/base58/blob/master/base58.go
-package main
+package mderive
 
 import (
 	"fmt"
@@ -47,7 +47,7 @@ var (
 
 // Encode takes a slice of bytes and encodes it to base58 string.
 // Leading zero bytes are kept in place for precise decoding.
-func Encode(input []byte) string {
+func b58Encode(input []byte) string {
 	output := make([]byte, 0)
 	num := new(big.Int).SetBytes(input)
 	mod := new(big.Int)
@@ -78,7 +78,7 @@ func Encode(input []byte) string {
 
 // Decode takes string as an input and returns decoded string and error
 // If provided string contains characters illegal for base58 the returned error will be <notnil>
-func Decode(input string) (output []byte, err error) {
+func b58Decode(input string) (output []byte, err error) {
 	result := big.NewInt(0)
 	tmpBig := new(big.Int)
 

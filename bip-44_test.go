@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"encoding/hex"

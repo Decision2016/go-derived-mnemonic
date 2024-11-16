@@ -1,4 +1,4 @@
-package main
+package mderive
 
 import (
 	"crypto/hmac"
@@ -7,8 +7,8 @@ import (
 
 var b85Path = "m/83696968'/0'/0'"
 
-func DeriveEntropy(key *Key) ([]byte, error) {
-	derivedKey, err := DerivePrivateKey(key, b85Path)
+func DeriveEntropyForMnemonic(key *Key, path string) ([]byte, error) {
+	derivedKey, err := DerivePrivateKey(key, path)
 	if err != nil {
 		return nil, err
 	}
