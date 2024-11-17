@@ -33,3 +33,24 @@ oxygen slot return brick humble hunt hope skin season stadium attitude insane
 shoulder lunar okay require arena rural close affair summer bunker trust tag
 steel staff bird cable transfer eagle enough obvious faculty sad invest viable
 ```
+
+## Helps
+
+The options for derive mnemonic command: `./main derive -h`
+
+Usage:
+  mderive derive -m mnemonic [--path | -p] [--passphrase | -e] [--count | -n]  [flags]
+
+Flags:
+
+  -n, --count int           mnemonic derive count (default 1)
+  
+  -h, --help                help for derive
+  
+  -l, --length int          mnemonic length, must be 12, 15, 18, 21 or 24 (default 12)
+  
+  -m, --mnemonic string     mnemonic passphrase
+  
+  -e, --passphrase string   mnemonic need to be derived
+  
+  -p, --path string         base derive path (default "m/83696968'/0'/0'")
